@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.inventorease.inventor_ease.modelo.ProdutoModelo;
 import br.com.inventorease.inventor_ease.modelo.RespostaModelo;
@@ -42,6 +44,14 @@ public class ProdutoServico {
 
     }
 
-    
+    // Método para remover produto
+    public ResponseEntity<RespostaModelo> remover(long codigo){
 
+        pr.deleteById(codigo);
+
+        rm.setMensagem("O produto foi removido com sucesso!");
+        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+        
+
+    } 
 }
